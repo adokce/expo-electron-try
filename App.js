@@ -1,19 +1,37 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import {
+  ApplicationProvider,
+  IconRegistry,
+  Layout,
+  Text,
+  Button,
+  Icon
+} from "@ui-kitten/components";
+import { EvaIconsPack } from "@ui-kitten/eva-icons";
+import { mapping, light as lightTheme } from "@eva-design/eva";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-    </View>
-  );
-}
+const HomeScreen = () => (
+  <Layout style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+    <Text catetory="h1">HOME</Text>
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    <FacebookIcon />
+    <LoginButton />
+  </Layout>
+);
+
+const App = () => (
+  <React.Fragment>
+    <IconRegistry icons={EvaIconsPack} />
+    <ApplicationProvider mapping={mapping} theme={lightTheme}>
+      <HomeScreen />
+    </ApplicationProvider>
+  </React.Fragment>
+);
+
+export default App;
+
+export const FacebookIcon = style => <Icon name="facebook" {...style} />;
+
+export const LoginButton = () => (
+  <Button icon={FacebookIcon}>Login with Facebook</Button>
+);
